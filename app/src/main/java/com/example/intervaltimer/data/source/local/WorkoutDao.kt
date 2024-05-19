@@ -18,6 +18,12 @@ interface WorkoutDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun upsertAll(workout: List<LocalWorkout>)
 
+    // @Query("UPDATE workout SET isCompleted = :completed WHERE id = :workoutId")
+    // suspend fun updateCompleted(workoutId: String, completed: Boolean)
+
+    @Query("DELETE FROM workout")
+    suspend fun deleteAll()
+
 }
 
 
