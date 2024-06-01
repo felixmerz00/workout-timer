@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.intervaltimer.data.DefaultWorkoutRepository
 import com.example.intervaltimer.databinding.FragmentSecondBinding
 
 /**

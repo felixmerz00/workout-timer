@@ -1,5 +1,6 @@
 package com.example.intervaltimer
 
+import android.content.Context
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -9,8 +10,13 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import androidx.datastore.dataStore
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.intervaltimer.databinding.ActivityMainBinding
+import kotlinx.coroutines.launch
+
+val Context.dataStore by dataStore("workout-store.json", WorkoutSerializer)
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,7 +37,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Create a new workout", Snackbar.LENGTH_LONG).show()
-            navController.navigate(R.id.action_FirstFragment_to_AddTimerFragment)
+            lifecycleScope.launch {
+                createWorkout(6, 2, 2)
+                navController.navigate(R.id.action_FirstFragment_to_AddTimerFragment)
+            }
         }
     }
 
@@ -55,5 +64,15 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+
+    private suspend fun createWorkout(workoutTime: Int, breakTime: Int, numSets: Int) {
+        dataStore.updateData {
+            it.copy(
+                workoutTime = workoutTime,
+                breakTime = breakTime,
+                numSets = numSets,
+            )
+        }
     }
 }

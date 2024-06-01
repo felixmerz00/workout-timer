@@ -11,7 +11,7 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class WorkoutStore(
-    val workoutTime: Int = 0,
-    val breakTime: Int = 0,
-    val numSets: Int = 0,
+    val workoutTime: Int = 4,
+    val breakTime: Int = 2,
+    val numSets: Int = 3,
 )

@@ -109,7 +109,7 @@
             android:text="@string/sets" />
 
         <EditText
-            android:id="@+id/editTextTimeSets"
+            android:id="@+id/editTextNumSets"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:ems="3"
