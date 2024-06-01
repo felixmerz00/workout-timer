@@ -5,7 +5,6 @@ package com.example.intervaltimer
 import androidx.datastore.core.Serializer
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.serializer
 import java.io.InputStream
 import java.io.OutputStream
 

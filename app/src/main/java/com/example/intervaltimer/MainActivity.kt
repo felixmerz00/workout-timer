@@ -12,7 +12,6 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.datastore.dataStore
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.example.intervaltimer.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 

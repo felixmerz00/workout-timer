@@ -1,16 +1,12 @@
 package com.example.intervaltimer
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.datastore.core.DataStore
-import androidx.datastore.dataStore
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.example.intervaltimer.databinding.FragmentFirstBinding
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -48,7 +44,6 @@ class FirstFragment : Fragment() {
                 val newText = "Workout object: $workout \nWorkout time: $workoutTimeStr"
                 binding.textviewFirst.text = newText
             }
-            // findNavController().navigate(R.id.action_FirstFragment_to_AddTimerFragment)
         }
     }
 
