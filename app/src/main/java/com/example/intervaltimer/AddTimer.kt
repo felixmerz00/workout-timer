@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.EditText
+import androidx.datastore.core.DataStore
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.intervaltimer.databinding.FragmentAddTimerBinding
+import kotlinx.coroutines.launch
 
 /**
  * An example full-screen fragment that shows and hides the system UI (i.e.
@@ -22,6 +25,8 @@ class AddTimer : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private val dataStore: DataStore<WorkoutStore> by lazy { requireContext().dataStore }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,6 +34,7 @@ class AddTimer : Fragment() {
     ): View {
 
         _binding = FragmentAddTimerBinding.inflate(inflater, container, false)
+
         return binding.root
 
     }
@@ -37,7 +43,14 @@ class AddTimer : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonConfirm.setOnClickListener {
-            findNavController().navigate(R.id.action_AddTimerFragment_to_FirstFragment)
+            lifecycleScope.launch {
+                val woTime = convertTimeStrToInt(binding.editTextTimeWorkout.text.toString())
+                val bTime = convertTimeStrToInt(binding.editTextTimeBreak.text.toString())
+                val nSets = binding.editTextNumSets.text.toString().toInt()
+                (requireActivity() as? MainActivity)?.createWorkout(woTime, bTime, nSets)
+
+                findNavController().navigate(R.id.action_AddTimerFragment_to_FirstFragment)
+            }
         }
 
     }
@@ -45,5 +58,13 @@ class AddTimer : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun convertTimeStrToInt(durationStr: String): Int {
+        val parts = durationStr.split(":")
+        val minutes = parts[0].toIntOrNull()
+        val seconds = parts[1].toIntOrNull()
+        if (minutes == null || seconds == null) return 999
+        return (minutes * 60) + seconds
     }
 }

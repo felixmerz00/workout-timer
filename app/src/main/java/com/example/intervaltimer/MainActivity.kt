@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
                 || super.onSupportNavigateUp()
     }
 
-    private suspend fun createWorkout(workoutTime: Int, breakTime: Int, numSets: Int) {
+    suspend fun createWorkout(workoutTime: Int, breakTime: Int, numSets: Int) {
         dataStore.updateData {
             it.copy(
                 workoutTime = workoutTime,
