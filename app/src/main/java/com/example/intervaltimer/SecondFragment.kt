@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.datastore.core.DataStore
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.example.intervaltimer.databinding.FragmentSecondBinding
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -58,7 +57,7 @@ class SecondFragment : Fragment() {
                 override fun onFinish() {
                     numSetsRemaining--
                     if (numSetsRemaining == 0){
-                        textView.text = "Done!"
+                        textView.text = getString(R.string.workoutFinishedText)
                     } else {
                         breakTimer.start()
                     }
