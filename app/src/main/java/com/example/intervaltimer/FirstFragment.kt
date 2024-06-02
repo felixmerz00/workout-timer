@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.intervaltimer.databinding.FragmentFirstBinding
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import androidx.navigation.fragment.findNavController
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -36,14 +37,15 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        lifecycleScope.launch {
+            val workout = dataStore.data.first()
+            val workoutTimeStr = workout.workoutTime.toString()
+            val newText = "Workout object: $workout \nWorkout time: $workoutTimeStr"
+            binding.textviewFirst.text = newText
+        }
+
         binding.buttonFirst.setOnClickListener {
-            // binding.textviewFirst.text = "Your new text here"
-            lifecycleScope.launch {
-                val workout = dataStore.data.first()
-                val workoutTimeStr = workout.workoutTime.toString()
-                val newText = "Workout object: $workout \nWorkout time: $workoutTimeStr"
-                binding.textviewFirst.text = newText
-            }
+            findNavController().navigate(R.id.SecondFragment)
         }
     }
 
