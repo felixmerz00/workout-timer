@@ -48,6 +48,7 @@ class SecondFragment : Fragment() {
             binding.textviewTimer.text = workoutTimeStr
             // set numSets
             numSetsRemaining = workout.numSets
+            updateSetInfo()
             // set workout timer
             woTimer = object : CountDownTimer(workout.workoutTime.toLong() * 1000, 10) {
                 override fun onTick(millisUntilFinished: Long) {
