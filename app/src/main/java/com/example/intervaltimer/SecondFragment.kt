@@ -21,6 +21,8 @@ class SecondFragment : Fragment() {
     private var _binding: FragmentSecondBinding? = null
     private val dataStore: DataStore<WorkoutStore> by lazy { requireContext().dataStore }
     private lateinit var woTimer: CountDownTimer
+    private lateinit var breakTimer: CountDownTimer
+    private var numSetsRemaining: Int = 99
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -33,22 +35,43 @@ class SecondFragment : Fragment() {
 
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
         val textView = binding.textviewTimer
-        var workout: WorkoutStore = WorkoutStore()
+        var workout: WorkoutStore
 
         lifecycleScope.launch {
             workout = dataStore.data.first()
+
+            // temporary information text field
             val workoutTimeStr = workout.workoutTime.toString()
             val newText = "Workout object: $workout \nWorkout time: $workoutTimeStr"
             binding.textviewSecond.text = newText
-            binding.textviewTimer.text = workoutTimeStr
 
+            // timer text field
+            binding.textviewTimer.text = workoutTimeStr
+            // set numSets
+            numSetsRemaining = workout.numSets
+            // set workout timer
             woTimer = object : CountDownTimer(workout.workoutTime.toLong() * 1000, 10) {
                 override fun onTick(millisUntilFinished: Long) {
                     textView.text = (millisUntilFinished/1000).toString()
                 }
 
                 override fun onFinish() {
-                    textView.text = "Done!"
+                    numSetsRemaining--
+                    if (numSetsRemaining == 0){
+                        textView.text = "Done!"
+                    } else {
+                        breakTimer.start()
+                    }
+                }
+            }
+            // set break timer
+            breakTimer = object : CountDownTimer(workout.breakTime.toLong() * 1000, 10) {
+                override fun onTick(millisUntilFinished: Long) {
+                    textView.text = (millisUntilFinished/1000).toString()
+                }
+
+                override fun onFinish() {
+                    woTimer.start()
                 }
             }
         }
