@@ -56,9 +56,11 @@ class SecondFragment : Fragment() {
 
                 override fun onFinish() {
                     numSetsRemaining--
+                    updateSetInfo()
                     if (numSetsRemaining == 0){
                         textView.text = getString(R.string.workoutFinishedText)
                     } else {
+                        updateWoInfoToBreak()
                         breakTimer.start()
                     }
                 }
@@ -70,6 +72,7 @@ class SecondFragment : Fragment() {
                 }
 
                 override fun onFinish() {
+                    updateWoInfoToWo()
                     woTimer.start()
                 }
             }
@@ -83,6 +86,7 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonSecond.setOnClickListener {
+            updateWoInfoToWo()
             woTimer.start()
         }
     }
@@ -96,5 +100,21 @@ class SecondFragment : Fragment() {
     override fun onStop() {
         super.onStop()
         woTimer.cancel()
+    }
+
+    private fun updateWoInfoToWo(){
+        val newTextWo = "${getString(R.string.woInfoRoutine)} Workout"
+        binding.tvWoInfo.text = newTextWo
+        updateSetInfo()
+    }
+
+    private fun updateWoInfoToBreak(){
+        val newTextWo = "${getString(R.string.woInfoRoutine)} Break"
+        binding.tvWoInfo.text = newTextWo
+    }
+
+    private fun updateSetInfo(){
+        val newTextSets = "${getString(R.string.remainingSetsInfo)} $numSetsRemaining"
+        binding.tvSetsInfo.text = newTextSets
     }
 }
