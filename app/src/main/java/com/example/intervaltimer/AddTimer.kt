@@ -42,9 +42,9 @@ class AddTimer : Fragment() {
 
         binding.buttonConfirm.setOnClickListener {
             lifecycleScope.launch {
-                val woTime = convertTimeStrToInt(binding.editTextTimeWorkout.text.toString())
-                val bTime = convertTimeStrToInt(binding.editTextTimeBreak.text.toString())
-                val nSets = binding.editTextNumSets.text.toString().toInt()
+                val woTime = convertTimeStrToInt(binding.etWoDuration.text.toString())
+                val bTime = convertTimeStrToInt(binding.etBreakDuration.text.toString())
+                val nSets = binding.etNumSets.text.toString().toInt()
                 (requireActivity() as? MainActivity)?.createWorkout(woTime, bTime, nSets)
 
                 findNavController().navigate(R.id.action_AddTimerFragment_to_FirstFragment)
