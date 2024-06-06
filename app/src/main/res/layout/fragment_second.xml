@@ -11,27 +11,6 @@
         android:layout_height="match_parent"
         android:padding="16dp">
 
-        <Button
-            android:id="@+id/button_second"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/startWorkout"
-            app:layout_constraintBottom_toTopOf="@id/textview_second"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textview_second"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/lorem_ipsum"
-            app:layout_constraintBottom_toTopOf="@id/textview_timer"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_second" />
-
         <TextView
             android:id="@+id/textview_timer"
             android:layout_width="wrap_content"
@@ -39,21 +18,21 @@
             android:layout_marginTop="16dp"
             android:text="@string/initial_time"
             android:textSize="64sp"
-            app:layout_constraintBottom_toTopOf="@id/tv_wo_info"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textview_second" />
+            app:layout_constraintBottom_toTopOf="@id/tv_wo_info" />
 
         <TextView
             android:id="@+id/tv_wo_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/woInfoRoutine"
-            app:layout_constraintBottom_toTopOf="@id/tv_sets_info"
+            android:text="@string/warmup"
+            app:layout_constraintTop_toBottomOf="@id/textview_timer"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textview_timer" />
+            app:layout_constraintBottom_toTopOf="@id/tv_sets_info" />
 
         <TextView
             android:id="@+id/tv_sets_info"
@@ -61,10 +40,22 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="@string/remainingSetsInfo"
+            app:layout_constraintTop_toBottomOf="@id/tv_wo_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/button_second" />
+
+        <Button
+            android:id="@+id/button_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/startWorkout"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_wo_info" />
+            app:layout_constraintTop_toBottomOf="@id/tv_sets_info" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.core.widget.NestedScrollView>

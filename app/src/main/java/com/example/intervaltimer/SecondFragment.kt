@@ -39,12 +39,8 @@ class SecondFragment : Fragment() {
         lifecycleScope.launch {
             workout = dataStore.data.first()
 
-            // temporary information text field
-            val workoutTimeStr = workout.workoutTime.toString()
-            val newText = "Workout object: $workout \nWorkout time: $workoutTimeStr"
-            binding.textviewSecond.text = newText
-
             // timer text field
+            val workoutTimeStr = workout.workoutTime.toString()
             binding.textviewTimer.text = workoutTimeStr
             // set numSets
             numSetsRemaining = workout.numSets
@@ -115,7 +111,7 @@ class SecondFragment : Fragment() {
     }
 
     private fun updateSetInfo(){
-        val newTextSets = "${getString(R.string.remainingSetsInfo)} $numSetsRemaining"
+        val newTextSets = "$numSetsRemaining ${getString(R.string.remainingSetsInfo)}"
         binding.tvSetsInfo.text = newTextSets
     }
 }

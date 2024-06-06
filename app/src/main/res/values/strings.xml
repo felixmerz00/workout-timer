@@ -8,7 +8,9 @@
     <string name="startWorkout">Start</string>
     <string name="workoutFinishedText">Done!</string>
     <string name="woInfoRoutine">Routine:</string>
-    <string name="remainingSetsInfo">Num remaining sets:</string>
+    <string name="remainingSetsInfo">remaining sets</string>
+    <string name="workout">workout</string>
+    <string name="warmup">warmup</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
@@ -23,7 +25,7 @@
 
     <string name="warm_up">Warm-up</string>
     <string name="warm_up_initial_value">00:10</string>
-    <string name="workout">workout duration</string>
+    <string name="workout_duration">workout duration</string>
     <string name="workout_initial_value">01:00</string>
     <string name="break_string">break duration</string>
     <string name="break_initial_value">00:30</string>
