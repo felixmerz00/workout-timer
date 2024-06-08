@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 class SecondFragment : Fragment() {
 
     private var _binding: FragmentSecondBinding? = null
-    private val dataStore: DataStore<WorkoutStore> by lazy { requireContext().dataStore }
+    private val dataStore: DataStore<WorkoutCollectionStore> by lazy { requireContext().workoutCollectionDataStore }
     private lateinit var woTimer: CountDownTimer
     private lateinit var breakTimer: CountDownTimer
     private var numSetsRemaining: Int = 99
@@ -37,7 +37,7 @@ class SecondFragment : Fragment() {
         var workout: WorkoutStore
 
         lifecycleScope.launch {
-            workout = dataStore.data.first()
+            workout = dataStore.data.first().workoutList[0]
 
             // timer text field
             val workoutTimeStr = workout.workoutTime.toString()
