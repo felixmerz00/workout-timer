@@ -23,7 +23,7 @@ class AddTimer : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    private val dataStore: DataStore<WorkoutStore> by lazy { requireContext().dataStore }
+    // private val dataStore: DataStore<WorkoutStore> by lazy { requireContext().dataStore }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,6 +46,7 @@ class AddTimer : Fragment() {
                 val bTime = convertTimeStrToInt(binding.etBreakDuration.text.toString())
                 val nSets = binding.etNumSets.text.toString().toInt()
                 (requireActivity() as? MainActivity)?.createWorkout(woTime, bTime, nSets)
+                (requireActivity() as? MainActivity)?.createWorkoutInCollection(woTime, bTime, nSets)
 
                 findNavController().navigate(R.id.action_AddTimerFragment_to_FirstFragment)
             }

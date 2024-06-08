@@ -13,9 +13,11 @@ import android.view.MenuItem
 import androidx.datastore.dataStore
 import androidx.lifecycle.lifecycleScope
 import com.example.intervaltimer.databinding.ActivityMainBinding
+import kotlinx.collections.immutable.mutate
 import kotlinx.coroutines.launch
 
 val Context.dataStore by dataStore("workout-store.json", WorkoutSerializer)
+val Context.workoutCollectionDataStore by dataStore("workout-collection-store.json", WorkoutCollectionStoreSerializer)
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Create a new workout", Snackbar.LENGTH_LONG).show()
             lifecycleScope.launch {
-                createWorkout(6, 2, 2)
                 navController.navigate(R.id.action_FirstFragment_to_AddTimerFragment)
             }
         }
@@ -71,6 +72,22 @@ class MainActivity : AppCompatActivity() {
                 workoutTime = workoutTime,
                 breakTime = breakTime,
                 numSets = numSets,
+            )
+        }
+    }
+
+    suspend fun createWorkoutInCollection(workoutTime: Int, breakTime: Int, numSets: Int) {
+        workoutCollectionDataStore.updateData {
+            it.copy(
+                workoutList = it.workoutList.mutate { workoutList ->
+                    workoutList.add(
+                        WorkoutStore(
+                            workoutTime = workoutTime,
+                            breakTime = breakTime,
+                            numSets = numSets,
+                        )
+                    )
+                }
             )
         }
     }
