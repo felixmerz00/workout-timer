@@ -18,7 +18,7 @@ import androidx.navigation.fragment.findNavController
 class FirstFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
-    private val workoutCollectionDataStore: DataStore<WorkoutCollectionStore> by lazy { requireContext().workoutCollectionDataStore }
+    private val workoutDataStore: DataStore<WorkoutCollectionStore> by lazy { requireContext().workoutDataStore }
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -39,7 +39,7 @@ class FirstFragment : Fragment() {
 
         lifecycleScope.launch {
             //val workoutTimeStr = workout.workoutTime.toString()
-            val workoutFromCollection = workoutCollectionDataStore.data.first().workoutList
+            val workoutFromCollection = workoutDataStore.data.first().workoutList
             val newText = "Workouts from Collection ${workoutFromCollection.size}\n$workoutFromCollection"
             binding.textviewFirst.text = newText
         }

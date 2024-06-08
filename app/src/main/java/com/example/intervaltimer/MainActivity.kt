@@ -16,7 +16,7 @@ import com.example.intervaltimer.databinding.ActivityMainBinding
 import kotlinx.collections.immutable.mutate
 import kotlinx.coroutines.launch
 
-val Context.workoutCollectionDataStore by dataStore("workout-collection-store.json", WorkoutCollectionStoreSerializer)
+val Context.workoutDataStore by dataStore("workout-collection-store.json", WorkoutCollectionStoreSerializer)
 
 class MainActivity : AppCompatActivity() {
 
@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     suspend fun createWorkoutInCollection(workoutTime: Int, breakTime: Int, numSets: Int) {
-        workoutCollectionDataStore.updateData {
+        workoutDataStore.updateData {
             it.copy(
                 workoutList = it.workoutList.mutate { workoutList ->
                     workoutList.add(
