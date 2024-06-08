@@ -1,6 +1,5 @@
 package com.example.intervaltimer
 
-import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer
 import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
@@ -28,7 +27,6 @@ object WorkoutCollectionStoreSerializer : Serializer<WorkoutCollectionStore> {
                 string = input.readBytes().decodeToString()
             )
         } catch (e: SerializationException) {
-            throw CorruptionException("Unable to read Settings", e)
             e.printStackTrace()
             defaultValue
         }

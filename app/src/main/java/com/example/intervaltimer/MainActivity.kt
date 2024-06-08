@@ -16,7 +16,6 @@ import com.example.intervaltimer.databinding.ActivityMainBinding
 import kotlinx.collections.immutable.mutate
 import kotlinx.coroutines.launch
 
-val Context.dataStore by dataStore("workout-store.json", WorkoutSerializer)
 val Context.workoutCollectionDataStore by dataStore("workout-collection-store.json", WorkoutCollectionStoreSerializer)
 
 class MainActivity : AppCompatActivity() {
@@ -64,16 +63,6 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
-    }
-
-    suspend fun createWorkout(workoutTime: Int, breakTime: Int, numSets: Int) {
-        dataStore.updateData {
-            it.copy(
-                workoutTime = workoutTime,
-                breakTime = breakTime,
-                numSets = numSets,
-            )
-        }
     }
 
     suspend fun createWorkoutInCollection(workoutTime: Int, breakTime: Int, numSets: Int) {

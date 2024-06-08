@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.datastore.core.DataStore
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -45,7 +44,6 @@ class AddTimer : Fragment() {
                 val woTime = convertTimeStrToInt(binding.etWoDuration.text.toString())
                 val bTime = convertTimeStrToInt(binding.etBreakDuration.text.toString())
                 val nSets = binding.etNumSets.text.toString().toInt()
-                (requireActivity() as? MainActivity)?.createWorkout(woTime, bTime, nSets)
                 (requireActivity() as? MainActivity)?.createWorkoutInCollection(woTime, bTime, nSets)
 
                 findNavController().navigate(R.id.action_AddTimerFragment_to_FirstFragment)
