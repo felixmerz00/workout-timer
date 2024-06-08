@@ -18,7 +18,6 @@ import androidx.navigation.fragment.findNavController
 class FirstFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
-    private val dataStore: DataStore<WorkoutStore> by lazy { requireContext().dataStore }
     private val workoutCollectionDataStore: DataStore<WorkoutCollectionStore> by lazy { requireContext().workoutCollectionDataStore }
 
     // This property is only valid between onCreateView and
@@ -39,12 +38,9 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         lifecycleScope.launch {
-            val workout = dataStore.data.first()
-            val workoutTimeStr = workout.workoutTime.toString()
-
+            //val workoutTimeStr = workout.workoutTime.toString()
             val workoutFromCollection = workoutCollectionDataStore.data.first().workoutList
-
-            val newText = "Workouts from Collection\n$workoutFromCollection \n\nWorkout Object\n$workout \n\nWorkout time: $workoutTimeStr"
+            val newText = "Workouts from Collection ${workoutFromCollection.size}\n$workoutFromCollection"
             binding.textviewFirst.text = newText
         }
 
