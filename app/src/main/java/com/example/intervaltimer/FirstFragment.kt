@@ -10,7 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import com.example.intervaltimer.databinding.FragmentFirstBinding
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
