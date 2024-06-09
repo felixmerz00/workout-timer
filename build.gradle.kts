@@ -4,3 +4,13 @@ plugins {
     id("org.jetbrains.kotlin.android") version "1.8.0" apply false
     id("org.jetbrains.kotlin.plugin.serialization") version "2.0.0"
 }
+
+buildscript {
+    repositories {
+        google()
+    }
+    dependencies {
+        val nav_version = "2.7.7"
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version")
+    }
+}

@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.datastore.core.DataStore
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.navArgs
 import com.example.intervaltimer.databinding.FragmentSecondBinding
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -22,6 +24,8 @@ class SecondFragment : Fragment() {
     private lateinit var woTimer: CountDownTimer
     private lateinit var breakTimer: CountDownTimer
     private var numSetsRemaining: Int = 99
+
+    val args: SecondFragmentArgs by navArgs()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -39,48 +43,68 @@ class SecondFragment : Fragment() {
         lifecycleScope.launch {
             workout = workoutDataStore.data.first().workoutList[0]
 
-            // timer text field
+            // set timer text field
             val workoutTimeStr = workout.workoutTime.toString()
             binding.textviewTimer.text = workoutTimeStr
             // set numSets
             numSetsRemaining = workout.numSets
             updateSetInfo()
-            // set workout timer
-            woTimer = object : CountDownTimer(workout.workoutTime.toLong() * 1000, 10) {
-                override fun onTick(millisUntilFinished: Long) {
-                    textView.text = (millisUntilFinished/1000).toString()
-                }
-
-                override fun onFinish() {
-                    numSetsRemaining--
-                    updateSetInfo()
-                    if (numSetsRemaining == 0){
-                        textView.text = getString(R.string.workoutFinishedText)
-                    } else {
-                        updateWoInfoToBreak()
-                        breakTimer.start()
-                    }
-                }
-            }
-            // set break timer
-            breakTimer = object : CountDownTimer(workout.breakTime.toLong() * 1000, 10) {
-                override fun onTick(millisUntilFinished: Long) {
-                    textView.text = (millisUntilFinished/1000).toString()
-                }
-
-                override fun onFinish() {
-                    updateWoInfoToWo()
-                    woTimer.start()
-                }
-            }
+            woTimer = createWoTimer(workout.workoutTime.toLong(), textView)     // set workout timer
+            breakTimer = createBreakTimer(workout.breakTime.toLong(), textView)     // set break timer
         }
 
         return binding.root
 
     }
 
+    private fun createBreakTimer(timeInSeconds: Long, textView: TextView): CountDownTimer {
+        return object : CountDownTimer(timeInSeconds * 1000, 10) {
+
+            override fun onTick(millisUntilFinished: Long) {
+                textView.text = (millisUntilFinished / 1000).toString()
+            }
+
+            override fun onFinish() {
+                updateWoInfoToWo()
+                woTimer.start()
+            }
+        }
+    }
+
+    private fun createWoTimer(timeInSeconds: Long, textView: TextView): CountDownTimer {
+        return object : CountDownTimer(timeInSeconds * 1000, 10) {
+
+            override fun onTick(millisUntilFinished: Long) {
+                textView.text = (millisUntilFinished / 1000).toString()
+            }
+
+            override fun onFinish() {
+                numSetsRemaining--
+                updateSetInfo()
+                if (numSetsRemaining == 0) {
+                    textView.text = getString(R.string.workoutFinishedText)
+                } else {
+                    updateWoInfoToBreak()
+                    breakTimer.start()
+                }
+            }
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        lifecycleScope.launch {
+            val workout: WorkoutStore = workoutDataStore.data.first().workoutList[args.woIndex]
+            val textView = binding.textviewTimer
+            val workoutTimeStr = workout.workoutTime.toString()
+
+            textView.text = workoutTimeStr
+            woTimer = createWoTimer(workout.workoutTime.toLong(), textView)     // set workout timer
+            breakTimer = createBreakTimer(workout.breakTime.toLong(), textView)     // set break timer
+            numSetsRemaining = workout.numSets
+            updateSetInfo()
+        }
 
         binding.buttonSecond.setOnClickListener {
             updateWoInfoToWo()

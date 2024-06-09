@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.collections.immutable.PersistentList
 
@@ -18,7 +20,13 @@ class WorkoutAdapter(private val dataSet: PersistentList<WorkoutStore>) :
         val textView: TextView
 
         init {
-            // Define click listener for the ViewHolder's View
+            view.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment(position)
+                    it.findNavController().navigate(action)
+                }
+            }
             textView = view.findViewById(R.id.tvListItem)
         }
     }
