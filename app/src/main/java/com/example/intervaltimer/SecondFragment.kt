@@ -25,7 +25,7 @@ class SecondFragment : Fragment() {
     private lateinit var breakTimer: CountDownTimer
     private var numSetsRemaining: Int = 99
 
-    val args: SecondFragmentArgs by navArgs()
+    private val args: SecondFragmentArgs by navArgs()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -35,26 +35,29 @@ class SecondFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
-        val textView = binding.textviewTimer
-        var workout: WorkoutStore
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         lifecycleScope.launch {
-            workout = workoutDataStore.data.first().workoutList[0]
-
-            // set timer text field
+            val workout: WorkoutStore = workoutDataStore.data.first().workoutList[args.woIndex]
+            val textView = binding.textviewTimer
             val workoutTimeStr = workout.workoutTime.toString()
-            binding.textviewTimer.text = workoutTimeStr
-            // set numSets
-            numSetsRemaining = workout.numSets
-            updateSetInfo()
+
+            textView.text = workoutTimeStr  // set timer text field
+            numSetsRemaining = workout.numSets      // set num sets
+            updateSetInfo()     // set num sets text field
             woTimer = createWoTimer(workout.workoutTime.toLong(), textView)     // set workout timer
             breakTimer = createBreakTimer(workout.breakTime.toLong(), textView)     // set break timer
         }
 
-        return binding.root
-
+        binding.buttonSecond.setOnClickListener {
+            updateRoutineInfoToWo()
+            woTimer.start()
+        }
     }
 
     private fun createBreakTimer(timeInSeconds: Long, textView: TextView): CountDownTimer {
@@ -65,7 +68,7 @@ class SecondFragment : Fragment() {
             }
 
             override fun onFinish() {
-                updateWoInfoToWo()
+                updateRoutineInfoToWo()
                 woTimer.start()
             }
         }
@@ -84,31 +87,10 @@ class SecondFragment : Fragment() {
                 if (numSetsRemaining == 0) {
                     textView.text = getString(R.string.workoutFinishedText)
                 } else {
-                    updateWoInfoToBreak()
+                    updateRoutineInfoToBreak()
                     breakTimer.start()
                 }
             }
-        }
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        lifecycleScope.launch {
-            val workout: WorkoutStore = workoutDataStore.data.first().workoutList[args.woIndex]
-            val textView = binding.textviewTimer
-            val workoutTimeStr = workout.workoutTime.toString()
-
-            textView.text = workoutTimeStr
-            woTimer = createWoTimer(workout.workoutTime.toLong(), textView)     // set workout timer
-            breakTimer = createBreakTimer(workout.breakTime.toLong(), textView)     // set break timer
-            numSetsRemaining = workout.numSets
-            updateSetInfo()
-        }
-
-        binding.buttonSecond.setOnClickListener {
-            updateWoInfoToWo()
-            woTimer.start()
         }
     }
 
@@ -123,15 +105,13 @@ class SecondFragment : Fragment() {
         woTimer.cancel()
     }
 
-    private fun updateWoInfoToWo(){
-        val newTextWo = "${getString(R.string.woInfoRoutine)} Workout"
-        binding.tvWoInfo.text = newTextWo
+    private fun updateRoutineInfoToWo(){
+        binding.tvWoInfo.text = getString(R.string.workout)
         updateSetInfo()
     }
 
-    private fun updateWoInfoToBreak(){
-        val newTextWo = "${getString(R.string.woInfoRoutine)} Break"
-        binding.tvWoInfo.text = newTextWo
+    private fun updateRoutineInfoToBreak(){
+        binding.tvWoInfo.text = getString(R.string.break_str)
     }
 
     private fun updateSetInfo(){

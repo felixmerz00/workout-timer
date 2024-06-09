@@ -9,8 +9,9 @@
     <string name="workoutFinishedText">Done!</string>
     <string name="woInfoRoutine">Routine:</string>
     <string name="remainingSetsInfo">remaining sets</string>
-    <string name="workout">workout</string>
     <string name="warmup">warmup</string>
+    <string name="workout">workout</string>
+    <string name="break_str">break</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
