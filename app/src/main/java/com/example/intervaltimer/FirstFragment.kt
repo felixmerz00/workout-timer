@@ -48,12 +48,8 @@ class FirstFragment : Fragment() {
         lifecycleScope.launch {
             //val workoutTimeStr = workout.workoutTime.toString()
             val workoutFromCollection = workoutDataStore.data.first().workoutList
-            val newText = "Workouts from Collection ${workoutFromCollection.size}\n$workoutFromCollection"
+            val newText = "Workout Collection Size: ${workoutFromCollection.size}"
             binding.textviewFirst.text = newText
-        }
-
-        binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.SecondFragment)
         }
     }
 
