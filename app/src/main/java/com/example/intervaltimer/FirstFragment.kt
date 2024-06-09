@@ -11,6 +11,8 @@ import com.example.intervaltimer.databinding.FragmentFirstBinding
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -28,10 +30,16 @@ class FirstFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
-        return binding.root
+        lifecycleScope.launch {
+            val dataset = workoutDataStore.data.first().workoutList
+            val workoutAdapter = WorkoutAdapter(dataset)
 
+            val recyclerView: RecyclerView = binding.recyclerView
+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+            recyclerView.adapter = workoutAdapter
+        }
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
