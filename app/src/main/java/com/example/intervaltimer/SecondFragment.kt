@@ -21,6 +21,7 @@ class SecondFragment : Fragment() {
 
     private var _binding: FragmentSecondBinding? = null
     private val workoutDataStore: DataStore<WorkoutCollectionStore> by lazy { requireContext().workoutDataStore }
+    private lateinit var warmUpTimer: CountDownTimer
     private lateinit var woTimer: CountDownTimer
     private lateinit var breakTimer: CountDownTimer
     private var numSetsRemaining: Int = 99
@@ -50,13 +51,27 @@ class SecondFragment : Fragment() {
             textView.text = workoutTimeStr  // set timer text field
             numSetsRemaining = workout.numSets      // set num sets
             updateSetInfo()     // set num sets text field
+            warmUpTimer = createWarmUpTimer(textView)   // set warm-up timer for 10 sec
             woTimer = createWoTimer(workout.workoutTime.toLong(), textView)     // set workout timer
             breakTimer = createBreakTimer(workout.breakTime.toLong(), textView)     // set break timer
         }
 
         binding.buttonSecond.setOnClickListener {
-            updateRoutineInfoToWo()
-            woTimer.start()
+            warmUpTimer.start()
+        }
+    }
+
+    private fun createWarmUpTimer(textView: TextView): CountDownTimer {
+        return object : CountDownTimer(10 * 1000, 10) {
+
+            override fun onTick(millisUntilFinished: Long) {
+                textView.text = (millisUntilFinished / 1000).toString()
+            }
+
+            override fun onFinish() {
+                updateRoutineInfoToWo()
+                woTimer.start()
+            }
         }
     }
 
