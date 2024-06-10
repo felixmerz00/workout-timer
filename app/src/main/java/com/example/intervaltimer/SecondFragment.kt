@@ -1,5 +1,6 @@
 package com.example.intervaltimer
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
@@ -62,10 +63,14 @@ class SecondFragment : Fragment() {
     }
 
     private fun createWarmUpTimer(textView: TextView): CountDownTimer {
-        return object : CountDownTimer(10 * 1000, 10) {
+        return object : CountDownTimer(10 * 1000, 1) {
 
             override fun onTick(millisUntilFinished: Long) {
                 textView.text = (millisUntilFinished / 1000).toString()
+                if (millisUntilFinished.toInt() in 5210..5250) {
+                    val mediaPlayer = MediaPlayer.create(context, R.raw.time_signals)
+                    mediaPlayer.start()
+                }
             }
 
             override fun onFinish() {
