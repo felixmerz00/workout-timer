@@ -25,7 +25,10 @@ class SecondFragment : Fragment() {
     private lateinit var warmUpTimer: CountDownTimer
     private lateinit var woTimer: CountDownTimer
     private lateinit var breakTimer: CountDownTimer
+    private var numSets: Int = 99
     private var numSetsRemaining: Int = 99
+    private val breakSounds = listOf(R.raw.starting_workout_up_next_set_one, R.raw.break_up_next_set_two, R.raw.break_up_next_set_three, R.raw.break_up_next_set_four, R.raw.break_up_next_set_five, R.raw.break_up_next_set_six, R.raw.break_up_next_set_seven, R.raw.break_up_next_set_eight, R.raw.break_up_next_set_nine, R.raw.break_up_next_set_ten)
+    private val woSounds = listOf(R.raw.lets_go_set_one, R.raw.lets_go_set_two, R.raw.lets_go_set_three, R.raw.lets_go_set_four, R.raw.lets_go_set_five, R.raw.lets_go_set_six, R.raw.lets_go_set_seven, R.raw.lets_go_set_eight, R.raw.lets_go_set_nine, R.raw.lets_go_set_ten)
 
     private val args: SecondFragmentArgs by navArgs()
 
@@ -50,6 +53,7 @@ class SecondFragment : Fragment() {
             val workoutTimeStr = workout.workoutTime.toString()
 
             textView.text = workoutTimeStr  // set timer text field
+            numSets = workout.numSets   // set num sets
             numSetsRemaining = workout.numSets      // set num sets
             updateSetInfo()     // set num sets text field
             warmUpTimer = createWarmUpTimer(textView)   // set warm-up timer for 10 sec
@@ -59,6 +63,8 @@ class SecondFragment : Fragment() {
 
         binding.buttonSecond.setOnClickListener {
             warmUpTimer.start()
+            val mediaPlayer = MediaPlayer.create(context, breakSounds[0])
+            mediaPlayer.start()
         }
     }
 
@@ -76,29 +82,41 @@ class SecondFragment : Fragment() {
             override fun onFinish() {
                 updateRoutineInfoToWo()
                 woTimer.start()
+                val mediaPlayer = MediaPlayer.create(context, woSounds[0])
+                mediaPlayer.start()
             }
         }
     }
 
     private fun createBreakTimer(timeInSeconds: Long, textView: TextView): CountDownTimer {
-        return object : CountDownTimer(timeInSeconds * 1000, 10) {
+        return object : CountDownTimer(timeInSeconds * 1000, 1) {
 
             override fun onTick(millisUntilFinished: Long) {
                 textView.text = (millisUntilFinished / 1000).toString()
+                if (millisUntilFinished.toInt() in 5210..5250) {
+                    val mediaPlayer = MediaPlayer.create(context, R.raw.time_signals)
+                    mediaPlayer.start()
+                }
             }
 
             override fun onFinish() {
                 updateRoutineInfoToWo()
                 woTimer.start()
+                val mediaPlayer = MediaPlayer.create(context, woSounds[numSets-numSetsRemaining])
+                mediaPlayer.start()
             }
         }
     }
 
     private fun createWoTimer(timeInSeconds: Long, textView: TextView): CountDownTimer {
-        return object : CountDownTimer(timeInSeconds * 1000, 10) {
+        return object : CountDownTimer(timeInSeconds * 1000, 1) {
 
             override fun onTick(millisUntilFinished: Long) {
                 textView.text = (millisUntilFinished / 1000).toString()
+                if (millisUntilFinished.toInt() in 5210..5250) {
+                    val mediaPlayer = MediaPlayer.create(context, R.raw.time_signals)
+                    mediaPlayer.start()
+                }
             }
 
             override fun onFinish() {
@@ -109,6 +127,8 @@ class SecondFragment : Fragment() {
                 } else {
                     updateRoutineInfoToBreak()
                     breakTimer.start()
+                    val mediaPlayer = MediaPlayer.create(context, breakSounds[numSets-numSetsRemaining])
+                    mediaPlayer.start()
                 }
             }
         }
