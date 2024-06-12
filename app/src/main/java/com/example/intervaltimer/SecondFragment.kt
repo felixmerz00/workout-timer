@@ -63,7 +63,11 @@ class SecondFragment : Fragment() {
 
         binding.buttonSecond.setOnClickListener {
             warmUpTimer.start()
-            val mediaPlayer = MediaPlayer.create(context, breakSounds[0])
+            var mediaPlayer = MediaPlayer.create(context, breakSounds[0])
+            mediaPlayer.setOnCompletionListener {
+                it.release()
+                mediaPlayer = null
+            }
             mediaPlayer.start()
         }
     }
@@ -74,7 +78,11 @@ class SecondFragment : Fragment() {
             override fun onTick(millisUntilFinished: Long) {
                 textView.text = (millisUntilFinished / 1000).toString()
                 if (millisUntilFinished.toInt() in 5210..5250) {
-                    val mediaPlayer = MediaPlayer.create(context, R.raw.time_signals)
+                    var mediaPlayer = MediaPlayer.create(context, R.raw.time_signals)
+                    mediaPlayer.setOnCompletionListener {
+                        it.release()
+                        mediaPlayer = null
+                    }
                     mediaPlayer.start()
                 }
             }
@@ -82,7 +90,11 @@ class SecondFragment : Fragment() {
             override fun onFinish() {
                 updateRoutineInfoToWo()
                 woTimer.start()
-                val mediaPlayer = MediaPlayer.create(context, woSounds[0])
+                var mediaPlayer = MediaPlayer.create(context, woSounds[0])
+                mediaPlayer.setOnCompletionListener {
+                    it.release()
+                    mediaPlayer = null
+                }
                 mediaPlayer.start()
             }
         }
@@ -94,7 +106,11 @@ class SecondFragment : Fragment() {
             override fun onTick(millisUntilFinished: Long) {
                 textView.text = (millisUntilFinished / 1000).toString()
                 if (millisUntilFinished.toInt() in 5210..5250) {
-                    val mediaPlayer = MediaPlayer.create(context, R.raw.time_signals)
+                    var mediaPlayer = MediaPlayer.create(context, R.raw.time_signals)
+                    mediaPlayer.setOnCompletionListener {
+                        it.release()
+                        mediaPlayer = null
+                    }
                     mediaPlayer.start()
                 }
             }
@@ -102,7 +118,11 @@ class SecondFragment : Fragment() {
             override fun onFinish() {
                 updateRoutineInfoToWo()
                 woTimer.start()
-                val mediaPlayer = MediaPlayer.create(context, woSounds[numSets-numSetsRemaining])
+                var mediaPlayer = MediaPlayer.create(context, woSounds[numSets-numSetsRemaining])
+                mediaPlayer.setOnCompletionListener {
+                    it.release()
+                    mediaPlayer = null
+                }
                 mediaPlayer.start()
             }
         }
@@ -114,7 +134,11 @@ class SecondFragment : Fragment() {
             override fun onTick(millisUntilFinished: Long) {
                 textView.text = (millisUntilFinished / 1000).toString()
                 if (millisUntilFinished.toInt() in 5210..5250) {
-                    val mediaPlayer = MediaPlayer.create(context, R.raw.time_signals)
+                    var mediaPlayer = MediaPlayer.create(context, R.raw.time_signals)
+                    mediaPlayer.setOnCompletionListener {
+                        it.release()
+                        mediaPlayer = null
+                    }
                     mediaPlayer.start()
                 }
             }
@@ -127,7 +151,11 @@ class SecondFragment : Fragment() {
                 } else {
                     updateRoutineInfoToBreak()
                     breakTimer.start()
-                    val mediaPlayer = MediaPlayer.create(context, breakSounds[numSets-numSetsRemaining])
+                    var mediaPlayer = MediaPlayer.create(context, breakSounds[numSets-numSetsRemaining])
+                    mediaPlayer.setOnCompletionListener {
+                        it.release()
+                        mediaPlayer = null
+                    }
                     mediaPlayer.start()
                 }
             }
@@ -136,13 +164,17 @@ class SecondFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        warmUpTimer.cancel()
         woTimer.cancel()
+        breakTimer.cancel()
         _binding = null
     }
 
     override fun onStop() {
         super.onStop()
+        warmUpTimer.cancel()
         woTimer.cancel()
+        breakTimer.cancel()
     }
 
     private fun updateRoutineInfoToWo(){
