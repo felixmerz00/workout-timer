@@ -22,7 +22,7 @@ class WorkoutAdapter(private val dataSet: PersistentList<WorkoutStore>) :
             view.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    val action = FirstFragmentDirections.actionFirstFragmentToSecondFragment(position)
+                    val action = SelectWorkoutFragmentDirections.actionFirstFragmentToSecondFragment(position)
                     it.findNavController().navigate(action)
                 }
             }

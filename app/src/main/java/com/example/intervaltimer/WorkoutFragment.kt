@@ -11,16 +11,16 @@ import android.widget.TextView
 import androidx.datastore.core.DataStore
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import com.example.intervaltimer.databinding.FragmentSecondBinding
+import com.example.intervaltimer.databinding.FragmentWorkoutBinding
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
-class SecondFragment : Fragment() {
+class WorkoutFragment : Fragment() {
 
-    private var _binding: FragmentSecondBinding? = null
+    private var _binding: FragmentWorkoutBinding? = null
     private val workoutDataStore: DataStore<WorkoutCollectionStore> by lazy { requireContext().workoutDataStore }
     private lateinit var warmUpTimer: CountDownTimer
     private lateinit var woTimer: CountDownTimer
@@ -30,7 +30,7 @@ class SecondFragment : Fragment() {
     private val breakSounds = listOf(R.raw.starting_workout_up_next_set_one, R.raw.break_up_next_set_two, R.raw.break_up_next_set_three, R.raw.break_up_next_set_four, R.raw.break_up_next_set_five, R.raw.break_up_next_set_six, R.raw.break_up_next_set_seven, R.raw.break_up_next_set_eight, R.raw.break_up_next_set_nine, R.raw.break_up_next_set_ten)
     private val woSounds = listOf(R.raw.lets_go_set_one, R.raw.lets_go_set_two, R.raw.lets_go_set_three, R.raw.lets_go_set_four, R.raw.lets_go_set_five, R.raw.lets_go_set_six, R.raw.lets_go_set_seven, R.raw.lets_go_set_eight, R.raw.lets_go_set_nine, R.raw.lets_go_set_ten)
 
-    private val args: SecondFragmentArgs by navArgs()
+    private val args: WorkoutFragmentArgs by navArgs()
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -40,7 +40,7 @@ class SecondFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentSecondBinding.inflate(inflater, container, false)
+        _binding = FragmentWorkoutBinding.inflate(inflater, container, false)
         return binding.root
     }
 

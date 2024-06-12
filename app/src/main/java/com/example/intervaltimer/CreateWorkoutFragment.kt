@@ -7,16 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.intervaltimer.databinding.FragmentAddTimerBinding
+import com.example.intervaltimer.databinding.FragmentCreateWorkoutBinding
 import kotlinx.coroutines.launch
 
 /**
  * An example full-screen fragment that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-class AddTimer : Fragment() {
+class CreateWorkoutFragment : Fragment() {
 
-    private var _binding: FragmentAddTimerBinding? = null
+    private var _binding: FragmentCreateWorkoutBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -30,7 +30,7 @@ class AddTimer : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentAddTimerBinding.inflate(inflater, container, false)
+        _binding = FragmentCreateWorkoutBinding.inflate(inflater, container, false)
 
         return binding.root
 

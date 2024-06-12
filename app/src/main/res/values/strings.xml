@@ -2,8 +2,9 @@
     <string name="app_name">Interval Timer</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
+    <string name="select_workout_fragment_label">Select Workout</string>
+    <string name="create_workout_fragment_label">Create Workout</string>
+    <string name="workout_fragment_label">Workout</string>
     <string name="next">Next</string>
     <string name="startWorkout">Start</string>
     <string name="workoutFinishedText">Done!</string>
@@ -21,7 +22,6 @@
     <string name="timer_finish">Done</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="add_timer_fragment">Add Timer</string>
     <string name="hint_number_sets">E.g. 3</string>
 
     <string name="warm_up">Warm-up</string>

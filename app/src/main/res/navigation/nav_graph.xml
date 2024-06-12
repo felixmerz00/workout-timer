@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.intervaltimer.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        android:name="com.example.intervaltimer.SelectWorkoutFragment"
+        android:label="@string/select_workout_fragment_label"
+        tools:layout="@layout/fragment_select_workout">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
@@ -21,9 +21,9 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.intervaltimer.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
+        android:name="com.example.intervaltimer.WorkoutFragment"
+        android:label="@string/workout_fragment_label"
+        tools:layout="@layout/fragment_workout">
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
@@ -35,9 +35,9 @@
     </fragment>
     <fragment
         android:id="@+id/AddTimerFragment"
-        android:name="com.example.intervaltimer.AddTimer"
-        android:label="@string/add_timer_fragment"
-        tools:layout="@layout/fragment_add_timer">
+        android:name="com.example.intervaltimer.CreateWorkoutFragment"
+        android:label="@string/create_workout_fragment_label"
+        tools:layout="@layout/fragment_create_workout">
 
         <action
             android:id="@+id/action_AddTimerFragment_to_FirstFragment"

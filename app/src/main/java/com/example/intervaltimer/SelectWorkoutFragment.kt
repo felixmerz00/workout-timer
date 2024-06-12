@@ -7,18 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.datastore.core.DataStore
 import androidx.lifecycle.lifecycleScope
-import com.example.intervaltimer.databinding.FragmentFirstBinding
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.intervaltimer.databinding.FragmentSelectWorkoutBinding
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class FirstFragment : Fragment() {
+class SelectWorkoutFragment : Fragment() {
 
-    private var _binding: FragmentFirstBinding? = null
+    private var _binding: FragmentSelectWorkoutBinding? = null
     private val workoutDataStore: DataStore<WorkoutCollectionStore> by lazy { requireContext().workoutDataStore }
 
     // This property is only valid between onCreateView and
@@ -29,7 +29,7 @@ class FirstFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        _binding = FragmentSelectWorkoutBinding.inflate(inflater, container, false)
         lifecycleScope.launch {
             val dataset = workoutDataStore.data.first().workoutList
             val workoutAdapter = WorkoutAdapter(dataset)
