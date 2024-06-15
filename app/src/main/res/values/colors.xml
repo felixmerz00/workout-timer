@@ -7,4 +7,8 @@
     <color name="light_blue_A200">#FF40C4FF</color>
     <color name="light_blue_A400">#FF00B0FF</color>
     <color name="black_overlay">#66000000</color>
+
+    <color name="warm_yellow">#f8d673</color>
+    <color name="dark_blue">#313f57</color>
+    <color name="light_gray">#F0F0F0</color>
 </resources>

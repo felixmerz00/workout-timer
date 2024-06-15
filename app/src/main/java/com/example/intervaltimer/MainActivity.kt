@@ -10,6 +10,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import androidx.core.content.ContextCompat
 import androidx.datastore.dataStore
 import androidx.lifecycle.lifecycleScope
 import com.example.intervaltimer.databinding.ActivityMainBinding
@@ -41,6 +42,8 @@ class MainActivity : AppCompatActivity() {
                 navController.navigate(R.id.action_FirstFragment_to_AddTimerFragment)
             }
         }
+
+        window.navigationBarColor = resources.getColor(R.color.dark_blue, theme)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
