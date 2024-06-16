@@ -18,59 +18,66 @@
             android:id="@+id/tfWoDuration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/workout_duration"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/workout_duration"
+            android:textColor="@color/light_gray"
+            app:layout_constraintBottom_toTopOf="@id/etWoDuration"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/etWoDuration"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/etWoDuration"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:importantForAutofill="no"
             android:inputType="time"
             android:text="@string/warm_up_initial_value"
-            android:importantForAutofill="no"
-            app:layout_constraintTop_toBottomOf="@id/tfWoDuration"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/light_gray"
+            app:layout_constraintBottom_toTopOf="@id/tfBreakDuration"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tfBreakDuration"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tfWoDuration" />
 
         <TextView
             android:id="@+id/tfBreakDuration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/workout_duration"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@id/etWoDuration"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/workout_duration"
+            android:textColor="@color/light_gray"
             app:layout_constraintBottom_toTopOf="@id/etBreakDuration"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etWoDuration" />
 
         <EditText
             android:id="@+id/etBreakDuration"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:importantForAutofill="no"
             android:inputType="time"
             android:text="@string/workout_initial_value"
-            android:importantForAutofill="no"
-            app:layout_constraintTop_toBottomOf="@id/tfBreakDuration"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textAlignment="center"
+            android:textColor="@color/light_gray"
+            app:layout_constraintBottom_toTopOf="@id/tvNumSets"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/tvNumSets" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tfBreakDuration" />
 
         <TextView
             android:id="@+id/tvNumSets"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/sets"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@id/etBreakDuration"
-            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/sets"
+            android:textColor="@color/light_gray"
+            app:layout_constraintBottom_toTopOf="@id/etNumSets"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/etNumSets" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etBreakDuration" />
 
         <EditText
             android:id="@+id/etNumSets"
@@ -78,13 +85,15 @@
             android:layout_height="48dp"
             android:ems="3"
             android:hint="@string/hint_number_sets"
-            android:text="@string/sets_initial_value"
-            android:inputType="number"
             android:importantForAutofill="no"
-            app:layout_constraintTop_toBottomOf="@id/tvNumSets"
-            app:layout_constraintStart_toStartOf="parent"
+            android:inputType="number"
+            android:text="@string/sets_initial_value"
+            android:textAlignment="center"
+            android:textColor="@color/light_gray"
+            app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvNumSets" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -95,10 +104,12 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/warm_yellow"
         android:text="@string/confirm"
-        app:layout_constraintTop_toBottomOf="@id/ConstraintLayoutChild"
+        android:textColor="@color/dark_blue"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/ConstraintLayoutChild" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,8 +36,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Create a new workout", Snackbar.LENGTH_LONG).show()
+        binding.fab.setOnClickListener {
             lifecycleScope.launch {
                 navController.navigate(R.id.action_FirstFragment_to_AddTimerFragment)
             }

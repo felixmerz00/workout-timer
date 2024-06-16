@@ -44,11 +44,28 @@ class WorkoutAdapter(private val dataSet: PersistentList<WorkoutStore>) :
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.textView.text = dataSet[position].toString()
+        val woStr = "${convertSecondsToString(dataSet[position].workoutTime)}/${convertSecondsToString(dataSet[position].breakTime)}/${dataSet[position].numSets}"
+        viewHolder.textView.text = woStr
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = dataSet.size
+
+    private fun convertSecondsToString(data: Int): String{
+        val seconds = data % 60
+        val minutes = (data - seconds) / 60
+        val secStr = if (seconds >= 10) {
+            "$seconds"
+        } else {
+            "0$seconds"
+        }
+        val minStr = if (minutes >= 10) {
+            "$minutes"
+        } else {
+            "0$minutes"
+        }
+        return "$minStr:$secStr"
+    }
 
 }
 
