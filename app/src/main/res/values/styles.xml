@@ -10,7 +10,12 @@
         <item name="android:layout_margin">32dp</item>
     </style>
 
-    <style name="GrayText" parent="@style/TextAppearance.Material3.BodyLarge">
+    <style name="CountDown" parent="@style/TextAppearance.Material3.DisplayLarge">
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="android:layout_margin">32dp</item>
+    </style>
+
+    <style name="GrayText" parent="@style/TextAppearance.Material3.TitleLarge">
         <item name="android:textColor">@color/light_gray</item>
         <item name="android:layout_marginTop">16dp</item>
     </style>
@@ -22,5 +27,11 @@
     <style name="BlueButtonText" parent="@style/TextAppearance.Material3.BodyLarge">
         <item name="android:textColor">@color/dark_blue</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextField">
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="backgroundTint">@color/light_gray</item>
+        <item name="android:textAlignment">center</item>
     </style>
 </resources>

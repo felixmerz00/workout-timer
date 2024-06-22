@@ -43,9 +43,8 @@
             android:importantForAutofill="no"
             android:inputType="time"
             android:text="@string/warm_up_initial_value"
-            android:textAlignment="center"
             android:textAllCaps="false"
-            android:textColor="@color/light_gray"
+            style="@style/TextField"
             app:layout_constraintBottom_toTopOf="@id/tfBreakDuration"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,12 +64,11 @@
         <EditText
             android:id="@+id/etBreakDuration"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="wrap_content"
             android:importantForAutofill="no"
             android:inputType="time"
             android:text="@string/workout_initial_value"
-            android:textAlignment="center"
-            android:textColor="@color/light_gray"
+            style="@style/TextField"
             app:layout_constraintBottom_toTopOf="@id/tvNumSets"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -96,12 +94,12 @@
             android:importantForAutofill="no"
             android:inputType="number"
             android:text="@string/sets_initial_value"
-            android:textAlignment="center"
-            android:textColor="@color/light_gray"
+            style="@style/TextField"
             app:layout_constraintBottom_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvNumSets" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -118,6 +116,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/constraintLayoutChild" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

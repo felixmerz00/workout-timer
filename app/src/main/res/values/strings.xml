@@ -21,7 +21,7 @@
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat…
     </string>
-    <string name="initial_time">20:00</string>
+    <string name="initial_time">00:10</string>
     <string name="timer_finish">Done</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
