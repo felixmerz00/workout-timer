@@ -4,4 +4,9 @@
         <item name="android:background">@color/black_overlay</item>
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
+
+    <style name="FrameHeader" parent="@style/TextAppearance.Material3.DisplayMedium">
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="android:layout_margin">32dp</item>
+    </style>
 </resources>

@@ -8,6 +8,7 @@
         android:id="@+id/tvCreateWorkoutHeading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        style="@style/FrameHeader"
         android:text="@string/create_workout_fragment_heading"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
