@@ -15,5 +15,5 @@
         android:padding="8dp"
         android:text="@string/workout"
         android:textAlignment="center"
-        android:textColor="@color/dark_blue" />
+        style="@style/BlueText"/>
 </FrameLayout>

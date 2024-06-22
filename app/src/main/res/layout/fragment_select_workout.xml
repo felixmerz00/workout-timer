@@ -14,7 +14,7 @@
             android:id="@+id/tvSelectWorkoutHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/FrameHeader"
+            style="@style/FragmentHeader"
             android:text="@string/select_workout_fragment_heading"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

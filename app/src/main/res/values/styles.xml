@@ -5,8 +5,22 @@
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
 
-    <style name="FrameHeader" parent="@style/TextAppearance.Material3.DisplayMedium">
+    <style name="FragmentHeader" parent="@style/TextAppearance.Material3.DisplayMedium">
         <item name="android:textColor">@color/light_gray</item>
         <item name="android:layout_margin">32dp</item>
+    </style>
+
+    <style name="GrayText" parent="@style/TextAppearance.Material3.BodyLarge">
+        <item name="android:textColor">@color/light_gray</item>
+        <item name="android:layout_marginTop">16dp</item>
+    </style>
+
+    <style name="BlueText" parent="@style/TextAppearance.Material3.BodyLarge">
+        <item name="android:textColor">@color/dark_blue</item>
+    </style>
+
+    <style name="BlueButtonText" parent="@style/TextAppearance.Material3.BodyLarge">
+        <item name="android:textColor">@color/dark_blue</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>
