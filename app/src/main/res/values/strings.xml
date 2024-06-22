@@ -5,6 +5,9 @@
     <string name="select_workout_fragment_label">Select Workout</string>
     <string name="create_workout_fragment_label">Create Workout</string>
     <string name="workout_fragment_label">Workout</string>
+    <string name="select_workout_fragment_heading">select workout</string>
+    <string name="create_workout_fragment_heading">create workout</string>
+    <string name="workout_fragment_heading">workout</string>
     <string name="next">Next</string>
     <string name="startWorkout">Start</string>
     <string name="workoutFinishedText">Done!</string>

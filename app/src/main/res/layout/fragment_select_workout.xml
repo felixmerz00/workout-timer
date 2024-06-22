@@ -12,11 +12,11 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/textview_first"
+            android:id="@+id/tvSelectWorkoutHeading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/lorem_ipsum"
+            android:text="@string/select_workout_fragment_heading"
             android:textColor="@color/light_gray"
             app:layout_constraintBottom_toTopOf="@id/recyclerView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toBottomOf="@+id/textview_first"
+            app:layout_constraintTop_toBottomOf="@+id/tvSelectWorkoutHeading"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 

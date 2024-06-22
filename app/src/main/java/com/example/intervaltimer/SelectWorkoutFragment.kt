@@ -43,13 +43,6 @@ class SelectWorkoutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        lifecycleScope.launch {
-            //val workoutTimeStr = workout.workoutTime.toString()
-            val workoutFromCollection = workoutDataStore.data.first().workoutList
-            val newText = "Workout Collection Size: ${workoutFromCollection.size}"
-            binding.textviewFirst.text = newText
-        }
     }
 
     override fun onDestroyView() {
