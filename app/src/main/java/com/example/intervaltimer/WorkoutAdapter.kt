@@ -3,6 +3,8 @@ package com.example.intervaltimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +27,11 @@ class WorkoutAdapter(private val dataSet: PersistentList<WorkoutStore>) :
                     val action = SelectWorkoutFragmentDirections.actionFirstFragmentToSecondFragment(position)
                     it.findNavController().navigate(action)
                 }
+            }
+            view.setOnLongClickListener {
+                val delButton = view.findViewById<ImageButton>(R.id.delWoButton)
+                delButton.visibility = View.VISIBLE
+                true
             }
             textView = view.findViewById(R.id.tvListItem)
         }

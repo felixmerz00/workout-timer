@@ -11,4 +11,5 @@
     <color name="warm_yellow">#f8d673</color>
     <color name="dark_blue">#313f57</color>
     <color name="light_gray">#F0F0F0</color>
+    <color name="custom_red">#E74C3C</color>
 </resources>
