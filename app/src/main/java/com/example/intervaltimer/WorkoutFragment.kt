@@ -148,6 +148,12 @@ class WorkoutFragment : Fragment() {
                 updateSetInfo()
                 if (numSetsRemaining == 0) {
                     textView.text = getString(R.string.workoutFinishedText)
+                    var mediaPlayer = MediaPlayer.create(context, R.raw.workout_completed)
+                    mediaPlayer.setOnCompletionListener {
+                        it.release()
+                        mediaPlayer = null
+                    }
+                    mediaPlayer.start()
                 } else {
                     updateRoutineInfoToBreak()
                     breakTimer.start()
