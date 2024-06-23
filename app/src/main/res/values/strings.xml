@@ -9,9 +9,8 @@
     <string name="create_workout_fragment_heading">create workout</string>
     <string name="workout_fragment_heading">workout</string>
     <string name="next">Next</string>
-    <string name="startWorkout">Start</string>
-    <string name="workoutFinishedText">Done!</string>
-    <string name="woInfoRoutine">Routine:</string>
+    <string name="startWorkout">start</string>
+    <string name="workoutFinishedText">done!</string>
     <string name="remainingSetsInfo">remaining sets</string>
     <string name="warmup">warm-up</string>
     <string name="workout">workout</string>
@@ -41,4 +40,5 @@
     <string name="floating_action_button_content_description">Create a new workout.</string>
     <string name="edit_the_selected_workout">Edit the selected workout.</string>
     <string name="delete_the_selected_workout">Delete the selected workout.</string>
+    <string name="reset">reset</string>
 </resources>

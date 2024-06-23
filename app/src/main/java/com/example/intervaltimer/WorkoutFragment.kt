@@ -50,9 +50,7 @@ class WorkoutFragment : Fragment() {
         lifecycleScope.launch {
             val workout: WorkoutStore = workoutDataStore.data.first().workoutList[args.woIndex]
             val textView = binding.textviewTimer
-            val workoutTimeStr = workout.workoutTime.toString()
 
-            textView.text = workoutTimeStr  // set timer text field
             numSets = workout.numSets   // set num sets
             numSetsRemaining = workout.numSets      // set num sets
             updateSetInfo()     // set num sets text field
@@ -62,6 +60,9 @@ class WorkoutFragment : Fragment() {
         }
 
         binding.buttonSecond.setOnClickListener {
+            binding.buttonSecond.visibility = View.GONE
+            binding.resetButton.visibility = View.VISIBLE
+
             warmUpTimer.start()
             var mediaPlayer = MediaPlayer.create(context, breakSounds[0])
             mediaPlayer.setOnCompletionListener {
@@ -69,6 +70,23 @@ class WorkoutFragment : Fragment() {
                 mediaPlayer = null
             }
             mediaPlayer.start()
+        }
+
+        binding.resetButton.setOnClickListener {
+            // cancel running timers
+            warmUpTimer.cancel()
+            woTimer.cancel()
+            breakTimer.cancel()
+
+            // reset the workout
+            numSetsRemaining = numSets
+            binding.textviewTimer.text = getString(R.string.initial_time)
+            binding.tvWoInfo.text = getString(R.string.warmup)
+            updateSetInfo()
+
+            // show relevant button
+            binding.resetButton.visibility = View.GONE
+            binding.buttonSecond.visibility = View.VISIBLE
         }
     }
 

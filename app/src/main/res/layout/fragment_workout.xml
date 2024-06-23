@@ -43,7 +43,6 @@
             android:layout_height="wrap_content"
             android:text="@string/remainingSetsInfo"
             style="@style/GrayText"
-            app:layout_constraintBottom_toTopOf="@id/button_second"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_wo_info" />
@@ -60,6 +59,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_sets_info" />
+
+        <Button
+            android:id="@+id/resetButton"
+            style="@style/BlueButtonText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/warm_yellow"
+            android:text="@string/reset"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/tv_sets_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
