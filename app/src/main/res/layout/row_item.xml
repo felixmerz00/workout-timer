@@ -25,6 +25,18 @@
             android:textAlignment="center" />
 
         <ImageButton
+            android:id="@+id/editWoButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/image_button_2"
+            android:contentDescription="Edit the selected workout."
+            app:tint="@color/dark_blue"
+            android:visibility="gone"
+            app:srcCompat="@drawable/edit_24dp_fill0_wght400_grad0_opsz24" />
+
+        <ImageButton
             android:id="@+id/delWoButton"
             android:layout_width="48dp"
             android:layout_height="48dp"

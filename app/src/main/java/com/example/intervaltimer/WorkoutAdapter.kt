@@ -31,6 +31,8 @@ class WorkoutAdapter(private val dataSet: PersistentList<WorkoutStore>) :
             view.setOnLongClickListener {
                 val delButton = view.findViewById<ImageButton>(R.id.delWoButton)
                 delButton.visibility = View.VISIBLE
+                val editButton = view.findViewById<ImageButton>(R.id.editWoButton)
+                editButton.visibility = View.VISIBLE
                 true
             }
             textView = view.findViewById(R.id.tvListItem)
