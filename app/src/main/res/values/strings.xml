@@ -39,4 +39,6 @@
     <string name="sets_initial_value">3</string>
     <string name="confirm">confirm</string>
     <string name="floating_action_button_content_description">Create a new workout.</string>
+    <string name="edit_the_selected_workout">Edit the selected workout.</string>
+    <string name="delete_the_selected_workout">Delete the selected workout.</string>
 </resources>

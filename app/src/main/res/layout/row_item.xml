@@ -21,8 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="@string/workout"
-            android:textAlignment="center" />
+            android:text="@string/workout" />
 
         <ImageButton
             android:id="@+id/editWoButton"
@@ -31,7 +30,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="8dp"
             android:background="@drawable/image_button_2"
-            android:contentDescription="Edit the selected workout."
+            android:contentDescription="@string/edit_the_selected_workout"
             app:tint="@color/dark_blue"
             android:visibility="gone"
             app:srcCompat="@drawable/edit_24dp_fill0_wght400_grad0_opsz24" />
@@ -43,7 +42,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginStart="8dp"
             android:background="@drawable/custom_image_button"
-            android:contentDescription="Delete the selected workout."
+            android:contentDescription="@string/delete_the_selected_workout"
             android:visibility="gone"
             app:srcCompat="@drawable/delete_24dp_fill0_wght400_grad0_opsz24"
             app:tint="@color/light_gray" />
