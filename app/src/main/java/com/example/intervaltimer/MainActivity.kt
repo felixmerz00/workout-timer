@@ -66,4 +66,12 @@ class MainActivity : AppCompatActivity() {
             )
         }
     }
+
+    suspend fun deleteWo(index: Int){
+        workoutDataStore.updateData {
+            it.copy(
+                workoutList = it.workoutList.removeAt(index)
+            )
+        }
+    }
 }

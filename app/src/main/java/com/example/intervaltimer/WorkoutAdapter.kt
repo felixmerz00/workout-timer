@@ -5,11 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.collections.immutable.PersistentList
+import kotlinx.coroutines.launch
 
-class WorkoutAdapter(private val dataSet: PersistentList<WorkoutStore>) :
+class WorkoutAdapter(private var dataSet: PersistentList<WorkoutStore>) :
     RecyclerView.Adapter<WorkoutAdapter.ViewHolder>() {
 
     /**
@@ -17,7 +19,9 @@ class WorkoutAdapter(private val dataSet: PersistentList<WorkoutStore>) :
      * (custom ViewHolder)
      */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView
+        val textView: TextView = view.findViewById(R.id.tvListItem)
+        private val delButton: ImageButton = view.findViewById(R.id.delWoButton)
+        private val editButton: ImageButton = view.findViewById<ImageButton>(R.id.editWoButton)
 
         init {
             view.setOnClickListener {
@@ -28,13 +32,18 @@ class WorkoutAdapter(private val dataSet: PersistentList<WorkoutStore>) :
                 }
             }
             view.setOnLongClickListener {
-                val delButton = view.findViewById<ImageButton>(R.id.delWoButton)
                 delButton.visibility = View.VISIBLE
-                val editButton = view.findViewById<ImageButton>(R.id.editWoButton)
                 editButton.visibility = View.VISIBLE
                 true
             }
-            textView = view.findViewById(R.id.tvListItem)
+            delButton.setOnClickListener {
+                val context = view.context
+                if (context is MainActivity) {
+                    context.lifecycleScope.launch {
+                        context.deleteWo(adapterPosition)
+                    }
+                }
+            }
         }
     }
 
