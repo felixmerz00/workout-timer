@@ -1,11 +1,14 @@
 package com.example.intervaltimer
 
+import android.Manifest
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import android.view.Menu
 import android.view.MenuItem
+import androidx.core.app.ActivityCompat
 import androidx.datastore.dataStore
 import androidx.lifecycle.lifecycleScope
 import com.example.intervaltimer.databinding.ActivityMainBinding
@@ -20,6 +23,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                0
+            )
+        }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)

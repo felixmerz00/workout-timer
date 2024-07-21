@@ -1,5 +1,6 @@
 package com.example.intervaltimer
 
+import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -60,6 +61,11 @@ class WorkoutFragment : Fragment() {
         }
 
         binding.buttonSecond.setOnClickListener {
+            Intent(requireContext().applicationContext, TimerService::class.java).also {
+                it.action = TimerService.Actions.START.toString()
+                requireContext().startService(it)
+            }
+
             binding.buttonSecond.visibility = View.GONE
             binding.resetButton.visibility = View.VISIBLE
 
@@ -73,6 +79,11 @@ class WorkoutFragment : Fragment() {
         }
 
         binding.resetButton.setOnClickListener {
+            Intent(requireContext().applicationContext, TimerService::class.java).also {
+                it.action = TimerService.Actions.RESET.toString()
+                requireContext().startService(it)
+            }
+
             // cancel running timers
             warmUpTimer.cancel()
             woTimer.cancel()
