@@ -4,6 +4,7 @@ import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -57,25 +58,29 @@ class WorkoutFragment : Fragment() {
             updateSetInfo()     // set num sets text field
             warmUpTimer = createWarmUpTimer(textView)   // set warm-up timer for 10 sec
             woTimer = createWoTimer(workout.workoutTime.toLong(), textView)     // set workout timer
-            breakTimer = createBreakTimer(workout.breakTime.toLong(), textView)     // set break timer
-        }
+            breakTimer =
+                createBreakTimer(workout.breakTime.toLong(), textView)     // set break timer
 
-        binding.buttonSecond.setOnClickListener {
-            Intent(requireContext().applicationContext, TimerService::class.java).also {
-                it.action = TimerService.Actions.START.toString()
-                requireContext().startService(it)
+            binding.buttonSecond.setOnClickListener {
+                Intent(requireContext().applicationContext, TimerService::class.java).also {
+                    it.action = TimerService.Actions.START.toString()
+                    it.putExtra("workoutTime", workout.workoutTime.toLong())
+                    it.putExtra("breakTime", workout.breakTime.toLong())
+                    it.putExtra("totalSets", workout.numSets)
+                    requireContext().startService(it)
+                }
+
+                binding.buttonSecond.visibility = View.GONE
+                binding.resetButton.visibility = View.VISIBLE
+
+                warmUpTimer.start()
+                var mediaPlayer = MediaPlayer.create(context, breakSounds[0])
+                mediaPlayer.setOnCompletionListener {
+                    it.release()
+                    mediaPlayer = null
+                }
+                mediaPlayer.start()
             }
-
-            binding.buttonSecond.visibility = View.GONE
-            binding.resetButton.visibility = View.VISIBLE
-
-            warmUpTimer.start()
-            var mediaPlayer = MediaPlayer.create(context, breakSounds[0])
-            mediaPlayer.setOnCompletionListener {
-                it.release()
-                mediaPlayer = null
-            }
-            mediaPlayer.start()
         }
 
         binding.resetButton.setOnClickListener {
