@@ -73,12 +73,6 @@ class WorkoutFragment : Fragment() {
                 binding.resetButton.visibility = View.VISIBLE
 
                 warmUpTimer.start()
-                var mediaPlayer = MediaPlayer.create(context, breakSounds[0])
-                mediaPlayer.setOnCompletionListener {
-                    it.release()
-                    mediaPlayer = null
-                }
-                mediaPlayer.start()
             }
         }
 
@@ -123,12 +117,6 @@ class WorkoutFragment : Fragment() {
             override fun onFinish() {
                 updateRoutineInfoToWo()
                 woTimer.start()
-                var mediaPlayer = MediaPlayer.create(context, woSounds[0])
-                mediaPlayer.setOnCompletionListener {
-                    it.release()
-                    mediaPlayer = null
-                }
-                mediaPlayer.start()
             }
         }
     }
@@ -151,12 +139,6 @@ class WorkoutFragment : Fragment() {
             override fun onFinish() {
                 updateRoutineInfoToWo()
                 woTimer.start()
-                var mediaPlayer = MediaPlayer.create(context, woSounds[numSets-numSetsRemaining])
-                mediaPlayer.setOnCompletionListener {
-                    it.release()
-                    mediaPlayer = null
-                }
-                mediaPlayer.start()
             }
         }
     }
@@ -190,12 +172,6 @@ class WorkoutFragment : Fragment() {
                 } else {
                     updateRoutineInfoToBreak()
                     breakTimer.start()
-                    var mediaPlayer = MediaPlayer.create(context, breakSounds[numSets-numSetsRemaining])
-                    mediaPlayer.setOnCompletionListener {
-                        it.release()
-                        mediaPlayer = null
-                    }
-                    mediaPlayer.start()
                 }
             }
         }
